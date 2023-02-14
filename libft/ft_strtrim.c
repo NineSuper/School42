@@ -6,7 +6,7 @@
 /*   By: tde-los- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 18:09:54 by tde-los-          #+#    #+#             */
-/*   Updated: 2023/02/08 19:02:06 by tde-los-         ###   ########.fr       */
+/*   Updated: 2023/02/13 09:25:19 by tde-los-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ char	*ft_strtrim(char const *s1, char const *set)
 
 	i = 0;
 	count = 0;
+	if (s1 == NULL || set == NULL)
+		return (NULL);
 	k = ft_strlen(s1);
 	while (ft_removeset(s1[i], set) == 1)
 		i++;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tde-los- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: tde-los- <tde-los-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 14:12:04 by tde-los-          #+#    #+#             */
-/*   Updated: 2023/02/14 15:07:14 by tde-los-         ###   ########.fr       */
+/*   Updated: 2023/02/15 16:41:27 by tde-los-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@
 # include <stdlib.h>
 # include <stddef.h>
 
-# define BUFF_SIZE 1000
+# ifndef	BUFFER_SIZE
+#  define	BUFFER_SIZE 42
+# endif
 
 int		ft_strlen(char *str);
 char	*get_next_line(int fd);

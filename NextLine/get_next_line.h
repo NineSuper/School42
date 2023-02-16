@@ -6,7 +6,7 @@
 /*   By: tde-los- <tde-los-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 14:12:04 by tde-los-          #+#    #+#             */
-/*   Updated: 2023/02/15 16:41:27 by tde-los-         ###   ########.fr       */
+/*   Updated: 2023/02/16 14:52:05 by tde-los-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # endif
 
 int		ft_strlen(char *str);
+int	ft_strchr(char *str, char c);
 char	*get_next_line(int fd);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: tde-los- <tde-los-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 13:21:37 by tde-los-          #+#    #+#             */
-/*   Updated: 2023/02/17 12:41:35 by tde-los-         ###   ########.fr       */
+/*   Updated: 2023/02/17 14:40:28 by tde-los-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,13 @@ char	*ft_line(char *line, char *statsh)
 	i = 0;
 	j = 0;
 	len = 0;
-	if (statsh[i] == '\0')
+	if (!statsh)
 		return (NULL);
+	if (statsh[i] == '\0')
+	{
+		free(statsh);
+		return (NULL);
+	}
 	while (statsh[len] != '\n' && statsh[len])
 		len++;
 	if (statsh[len] == '\n')
@@ -40,6 +45,8 @@ char	*free_statsh(char *statsh)
 	int		i;
 
 	i = 0;
+	if (!statsh)
+		return (NULL);
 	while (statsh[i] && statsh[i] != '\n')
 		i++;
 	if (statsh[i] == '\n')
@@ -51,11 +58,9 @@ char	*free_statsh(char *statsh)
 
 char	*buff_and_read(int fd, char *buff, char *statsh)
 {
-	char	n;
-	int		size;
+	int	size;
 
-	n = '\n';
-	while (size != 0 && ft_strchr(buff, n) == 0)
+	while (size > 0 && ft_strchr(buff, '\n') == 0)
 	{
 		size = read(fd, buff, BUFFER_SIZE);
 		buff[size] = 0;
@@ -66,12 +71,13 @@ char	*buff_and_read(int fd, char *buff, char *statsh)
 
 char	*get_next_line(int fd)
 {
-	static char	*statsh;
+	static char	*statsh = NULL;
 	char		*buff;
 	char		*line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
+	buff = NULL;
 	buff = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buff)
 		return (0);

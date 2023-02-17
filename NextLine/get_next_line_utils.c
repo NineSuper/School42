@@ -6,7 +6,7 @@
 /*   By: tde-los- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 11:08:26 by tde-los-          #+#    #+#             */
-/*   Updated: 2023/02/17 12:39:29 by tde-los-         ###   ########.fr       */
+/*   Updated: 2023/02/17 14:23:24 by tde-los-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ int	ft_strchr(char *str, char c)
 	int	i;
 
 	i = 0;
+	if (str == NULL)
+		return (0);
 	while (str[i])
 	{
 		if (str[i] == c)

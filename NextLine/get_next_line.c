@@ -6,7 +6,7 @@
 /*   By: tde-los- <tde-los-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 13:21:37 by tde-los-          #+#    #+#             */
-/*   Updated: 2023/02/17 14:40:28 by tde-los-         ###   ########.fr       */
+/*   Updated: 2023/02/17 16:43:02 by tde-los-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,7 @@ char	*ft_line(char *line, char *statsh)
 	if (!statsh)
 		return (NULL);
 	if (statsh[i] == '\0')
-	{
-		free(statsh);
 		return (NULL);
-	}
 	while (statsh[len] != '\n' && statsh[len])
 		len++;
 	if (statsh[len] == '\n')
@@ -36,6 +33,7 @@ char	*ft_line(char *line, char *statsh)
 	while (statsh[j] != '\n' && statsh[j])
 		line[i++] = statsh[j++];
 	line[i] = 0;
+	free(statsh);
 	return (line);
 }
 
@@ -52,7 +50,6 @@ char	*free_statsh(char *statsh)
 	if (statsh[i] == '\n')
 		i++;
 	str = ft_strdup(statsh + i);
-	free(statsh);
 	return (str);
 }
 
@@ -60,11 +57,13 @@ char	*buff_and_read(int fd, char *buff, char *statsh)
 {
 	int	size;
 
-	while (size > 0 && ft_strchr(buff, '\n') == 0)
+	while (ft_strchr(buff, '\n') == 0)
 	{
 		size = read(fd, buff, BUFFER_SIZE);
 		buff[size] = 0;
 		statsh = ft_strjoin(statsh, buff);
+		if (size <= 0)
+			break;	
 	}
 	return (statsh);
 }
@@ -75,9 +74,8 @@ char	*get_next_line(int fd)
 	char		*buff;
 	char		*line;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 		return (NULL);
-	buff = NULL;
 	buff = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buff)
 		return (0);

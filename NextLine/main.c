@@ -6,7 +6,7 @@
 /*   By: tde-los- <tde-los-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 11:28:52 by tde-los-          #+#    #+#             */
-/*   Updated: 2023/02/16 16:35:39 by tde-los-         ###   ########.fr       */
+/*   Updated: 2023/02/17 11:35:07 by tde-los-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int     main()
 
 	i = 0;
         fd = open("texte", O_RDONLY);
-	while (1)
+	while (i < 5)
 	{
 		line = get_next_line(fd);
 		if (line == NULL)

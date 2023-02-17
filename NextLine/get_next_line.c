@@ -6,7 +6,7 @@
 /*   By: tde-los- <tde-los-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 13:21:37 by tde-los-          #+#    #+#             */
-/*   Updated: 2023/02/16 16:43:40 by tde-los-         ###   ########.fr       */
+/*   Updated: 2023/02/17 11:35:49 by tde-los-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,51 +14,41 @@
 
 char	*ft_line(char *line, char *statsh)
 {
-	static int	j;
-	int			i;
+	int	j;
+	int	i;
+	int	len;
 
 	i = 0;
-	if (statsh == NULL || statsh[0] == '\0')
-		return (NULL);
-	while (statsh[i] != '\n' && statsh[i])
-		i++;
-	line = malloc(sizeof(char) * (i + 1));
-	i = 0;
-	while (statsh[j] && statsh[j] != '\n')
-	{
-		line[i] = statsh[j];
-		i++;
-		j++;
-	}
-	if (statsh[j] == '\n')
-		j += 1;
-	if (line[0] != '\0')
-		line[i] = '\0';
-	else
-		return (NULL);
+	j = 0;
+	len = 0;
+	while (statsh[len] != '\n')
+		len++;
+	line = malloc(sizeof(char) * (len + 1));
+	while (statsh[j] != '\n')
+		line[i++] = statsh[j++];
 	return (line);
+}
+
+char	*free_statsh(char *statsh)
+{
+	int	i;
+
+	i = 0;
 }
 
 char	*buff_and_read(int fd, char *buff, char *statsh)
 {
-	int	j;
-	int	i;
 	int	size;
+	char	n;
 
-	i = 0;
-	if (statsh == NULL)
-	{
-		statsh = malloc(sizeof(char) * (BUFFER_SIZE + 500));
-		j = 0;
-	}
-	while (size != 0)
+	n = '\n';
+	while (size != 0 && ft_strchr(buff, n) == 0)
 	{
 		size = read(fd, buff, BUFFER_SIZE);
-		while (buff[i])
-			statsh[j++] = buff[i++];
-		i = 0;
+		if (!statsh)
+			statsh = malloc(sizeof(char) * (BUFFER_SIZE + 1));
+		statsh = ft_strjoin(statsh, buff);
 	}
-	statsh[j] = '\0';
 	return (statsh);
 }
 
@@ -68,7 +58,7 @@ char	*get_next_line(int fd)
 	char		*buff;
 	char		*line;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) > 0)
 		return (NULL);
 	line = NULL;
 	buff = malloc(sizeof(char) * (BUFFER_SIZE + 1));

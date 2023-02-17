@@ -6,7 +6,7 @@
 /*   By: tde-los- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 11:08:26 by tde-los-          #+#    #+#             */
-/*   Updated: 2023/02/17 11:26:04 by tde-los-         ###   ########.fr       */
+/*   Updated: 2023/02/17 12:39:29 by tde-los-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,14 @@ char	*ft_strdup(char *s)
 	char	*tab;
 	int		i;
 
-	i = 0;
+	if (!s)
+		return (0);
+	i = -1;
 	tab = (char *)(malloc(sizeof(char) * (ft_strlen(s) + 1)));
 	if (tab == NULL)
 		return (NULL);
-	while (s[i])
-		tab[i++] = s[i];
+	while (s[++i])
+		tab[i] = s[i];
 	tab[i] = '\0';
 	return (tab);
 }
@@ -60,6 +62,8 @@ char	*ft_strjoin(char *s1, char *s2)
 	int		j;
 	int		len;
 
+	if (!s1)
+		return (ft_strdup(s2));
 	i = 0;
 	j = 0;
 	len = ft_strlen(s1) + ft_strlen(s2);

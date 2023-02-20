@@ -6,7 +6,7 @@
 /*   By: tde-los- <tde-los-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 11:28:52 by tde-los-          #+#    #+#             */
-/*   Updated: 2023/02/17 13:20:21 by tde-los-         ###   ########.fr       */
+/*   Updated: 2023/02/20 13:04:28 by tde-los-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,17 @@ int     main()
 			break;
 		printf("\033[42;01mLINE :\033[00m %s\n", line);
 		free(line);
-		/*if (i == 3)
-		{
-			close(fd);
-			fd = open("texte", O_RDONLY);
-		}*/
 		i++;
+	}
+	fd = open("texte2.txt", O_RDONLY);
+	printf("\n\n\nPARTIE 2\n\n\n");
+	while (1)
+	{
+		line = get_next_line(fd);
+		if (line == NULL)
+			break;
+		printf("\033[42;01mLINE :\033[00m %s\n", line);
+		free(line);
 	}
 	return (0);
 }

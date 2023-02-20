@@ -6,7 +6,7 @@
 /*   By: tde-los- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 11:08:26 by tde-los-          #+#    #+#             */
-/*   Updated: 2023/02/17 15:50:38 by tde-los-         ###   ########.fr       */
+/*   Updated: 2023/02/20 13:05:14 by tde-los-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_strlen(char *str)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
 	while (str[i])
@@ -46,13 +46,16 @@ char	*ft_strdup(char *s)
 	int		i;
 
 	if (!s)
-		return (0);
-	i = -1;
+		return (NULL);
+	i = 0;
 	tab = (char *)(malloc(sizeof(char) * (ft_strlen(s) + 1)));
 	if (tab == NULL)
 		return (NULL);
-	while (s[++i])
+	while (s[i])
+	{
 		tab[i] = s[i];
+		i++;
+	}
 	tab[i] = '\0';
 	return (tab);
 }
@@ -62,20 +65,25 @@ char	*ft_strjoin(char *s1, char *s2)
 	char	*str;
 	int		i;
 	int		j;
-	int		len;
 
 	if (!s1)
-		return (ft_strdup(s2));
+	{
+		s1 = (char *)malloc(sizeof(char) * 1);
+		s1[0] = '\0';
+	}
+	if (!s1 || !s2)
+		return (NULL);
 	i = 0;
 	j = 0;
-	len = ft_strlen(s1) + ft_strlen(s2);
-	str = malloc(sizeof(char) * (len + 1));
+	str = malloc(sizeof(char) * ((ft_strlen(s1) + ft_strlen(s2)) + 1));
+	if (!str)
+		return (NULL);
 	while (s1[i])
 		str[j++] = s1[i++];
 	i = 0;
 	while (s2[i])
 		str[j++] = s2[i++];
-	str[len] = '\0';
+	str[j] = '\0';
 	free(s1);
 	return (str);
 }

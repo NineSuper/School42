@@ -6,7 +6,7 @@
 /*   By: tde-los- <tde-los-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 14:12:04 by tde-los-          #+#    #+#             */
-/*   Updated: 2023/02/20 09:00:55 by tde-los-         ###   ########.fr       */
+/*   Updated: 2023/02/21 10:56:33 by tde-los-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@
 #  define BUFFER_SIZE 42
 # endif
 
-int		ft_strlen(char *str);
 int		ft_strchr(char *str, char c);
 char	*get_next_line(int fd);
 char	*ft_line(char *statsh);
@@ -30,5 +29,6 @@ char	*free_statsh(char *statsh);
 char	*buff_and_read(int fd, char *statsh);
 char	*ft_strjoin(char *s1, char *s2);
 char	*ft_strdup(char *s);
+size_t	ft_strlen(char *str);
 
 #endif

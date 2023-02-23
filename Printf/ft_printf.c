@@ -6,7 +6,7 @@
 /*   By: tde-los- <tde-los-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 13:59:44 by tde-los-          #+#    #+#             */
-/*   Updated: 2023/02/22 15:52:55 by tde-los-         ###   ########.fr       */
+/*   Updated: 2023/02/23 11:50:47 by tde-los-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,21 +22,17 @@ int	ft_check(const char c, va_list ap)
 	else if (c == 's')
 		count += ft_printstr(va_arg(ap, char *), 1);
 	else if (c == 'p')
-		ft_putstr_fd("P", 1);
+		count += ft_pointer(va_arg(ap, unsigned long long), 1);
 	else if (c == 'd' || c == 'i')
 		count += ft_putnbr(va_arg(ap, int));
-	else if (c == 'u')
-		ft_putstr_fd("D", 1);
-	else if (c == 'x')
-		ft_putstr_fd("H.MAJ", 1);
-	else if (c == 'X')
-		ft_putstr_fd("H.min", 1);
+	else if (c == 'x' || c == 'X' || c == 'u')
+		count += ft_putnbr_base(va_arg(ap, unsigned int), c);
 	else if (c == '%')
 		count += ft_printchar('%');
 	else
 	{
 		count += ft_printchar('%');
-		count += ft_printchar(c);		
+		count += ft_printchar(c);
 	}
 	return (count);
 }
@@ -54,12 +50,12 @@ int	ft_printf(const char *str, ...)
 	{
 		if (str[i] == '%')
 		{
-			count += count + ft_check(str[i + 1], ap);
+			count = count + ft_check(str[i + 1], ap);
 			i++;
 		}
 		else
 		{
-			ft_putchar_fd(str[i], 1);
+			ft_printchar(str[i]);
 			count++;
 		}
 		i++;

@@ -6,7 +6,7 @@
 /*   By: tde-los- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 14:54:15 by tde-los-          #+#    #+#             */
-/*   Updated: 2023/02/22 15:36:19 by tde-los-         ###   ########.fr       */
+/*   Updated: 2023/02/23 11:43:04 by tde-los-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	ft_printstr(char *str, int fd)
 	i = 0;
 	if (!str)
 	{
-		ft_printstr("(NULL)", 1);
+		ft_printstr("(null)", 1);
 		return (6);
 	}
 	while (str[i])
@@ -34,16 +34,4 @@ int	ft_printstr(char *str, int fd)
 		i++;
 	}
 	return (i);
-}
-
-int	ft_putnbr(int n)
-{
-	int	count;
-	char	*number;
-
-	count = 0;
-	number = ft_itoa(n);
-	count += ft_printf("%s", number);
-	free(number);
-	return (count);
 }

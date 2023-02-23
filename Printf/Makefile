@@ -6,11 +6,11 @@
 #    By: tde-los- <tde-los-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/13 13:52:46 by tde-los-          #+#    #+#              #
-#    Updated: 2023/02/22 15:03:44 by tde-los-         ###   ########.fr        #
+#    Updated: 2023/02/23 11:36:52 by tde-los-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS = ft_printf.c ft_printstr.c
+SRCS = ft_printf.c ft_printstr.c ft_putnbr.c ft_itoa.c
 
 OBS = $(SRCS:.c=.o)
 

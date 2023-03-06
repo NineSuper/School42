@@ -20,7 +20,7 @@ int	ft_check(const char c, va_list ap)
 	if (c == 'c')
 		count += ft_printchar(va_arg(ap, int));
 	else if (c == 's')
-		count += ft_printstr(va_arg(ap, char *), 1);
+		count += ft_printstr(va_arg(ap, char *));
 	else if (c == 'p')
 		count += ft_pointer(va_arg(ap, unsigned long long), 1);
 	else if (c == 'd' || c == 'i')

@@ -20,7 +20,7 @@ int	ft_putnbr(int n)
 	count = 0;
 	if (n == -2147483647)
 	{
-		count += ft_printstr("-2147483647", 1);
+		count += ft_printstr("-2147483647");
 		return (count);
 	}
 	number = ft_itoa(n);
@@ -65,11 +65,11 @@ int	ft_pointer(unsigned long long nb, int start)
 	base = "0123456789abcdef";
 	if (!nb && start == 1)
 	{
-		i += ft_printstr("(nil)", 1);
+		i += ft_printstr("(nil)");
 		return (i);
 	}
 	if (start == 1)
-		i += ft_printstr("0x", 1);
+		i += ft_printstr("0x");
 	if (nb > 15)
 	{
 		i += ft_pointer((nb / 16), 0);

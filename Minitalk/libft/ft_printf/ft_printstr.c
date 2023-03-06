@@ -18,19 +18,19 @@ int	ft_printchar(char c)
 	return (1);
 }
 
-int	ft_printstr(char *str, int fd)
+int	ft_printstr(char *str)
 {
 	int	i;
 
 	i = 0;
 	if (!str)
 	{
-		ft_printstr("(null)", 1);
+		ft_printstr("(null)");
 		return (6);
 	}
 	while (str[i])
 	{
-		write(fd, &str[i], 1);
+		write(1, &str[i], 1);
 		i++;
 	}
 	return (i);

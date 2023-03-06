@@ -6,7 +6,7 @@
 /*   By: tde-los- <tde-los-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 13:21:37 by tde-los-          #+#    #+#             */
-/*   Updated: 2023/02/23 14:30:17 by tde-los-         ###   ########.fr       */
+/*   Updated: 2023/02/21 11:29:29 by tde-los-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,11 +72,13 @@ char	*buff_and_read(int fd, char *statsh)
 	if (!buff)
 		return (NULL);
 	size = 1;
-	while (gnl_ft_strchr(buff, '\n') == 0 && size != 0)
+	while (size != 0)
 	{
 		size = read(fd, buff, BUFFER_SIZE);
 		buff[size] = '\0';
 		statsh = gnl_ft_strjoin(statsh, buff);
+		if (gnl_ft_strchr(buff, '\n') == 1 || size <= -1)
+			break ;
 	}
 	if (buff)
 		free(buff);

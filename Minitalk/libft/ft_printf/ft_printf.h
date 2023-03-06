@@ -21,7 +21,7 @@
 int	ft_printf(const char *str, ...);
 int	ft_check(const char c, va_list ap);
 int	ft_printchar(char c);
-int	ft_printstr(char *str, int fd);
+int	ft_printstr(char *str);
 int	ft_putnbr(int n);
 int	ft_putnbr_base(unsigned int n, char c);
 int	ft_pointer(unsigned long long nb, int start);
